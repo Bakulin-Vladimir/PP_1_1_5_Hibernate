@@ -18,6 +18,5 @@ public class Main {
         allUsers.stream().forEach(System.out::println);
         userDaoJDBC.cleanUsersTable();
         userDaoJDBC.dropUsersTable();
-
     }
 }
