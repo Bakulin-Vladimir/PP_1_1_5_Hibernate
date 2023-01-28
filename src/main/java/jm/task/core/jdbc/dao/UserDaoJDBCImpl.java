@@ -17,18 +17,13 @@ public class UserDaoJDBCImpl implements UserDao {
     private static final String DELETE_USER_ID = "delete from user where id=?";
     private static final String SELECT_USER = "select * from user";
     private static final String CLEAN_TABLE = "truncate table user";
-    Util util = new Util();
 
     public UserDaoJDBCImpl() {
     }
 
     public void createUsersTable() {
-        try {
-            util.connectDatabase();
-        } catch (ClassNotFoundException | SQLException e) {
-            throw new RuntimeException(e);
-        }
-        try (Connection connection = util.getConnection();
+        Util.connectDatabase();
+        try (Connection connection = Util.getConnection();
              Statement statement = connection.createStatement()) {
             statement.execute(CREATE_TABLE);
         } catch (SQLException e) {
@@ -37,12 +32,8 @@ public class UserDaoJDBCImpl implements UserDao {
     }
 
     public void dropUsersTable() {
-        try {
-            util.connectDatabase();
-        } catch (ClassNotFoundException | SQLException e) {
-            throw new RuntimeException(e);
-        }
-        try (Connection connection = util.getConnection();
+        Util.connectDatabase();
+        try (Connection connection = Util.getConnection();
              Statement statement = connection.createStatement()) {
             statement.execute(DROP_TABLE);
         } catch (SQLException e) {
@@ -51,12 +42,8 @@ public class UserDaoJDBCImpl implements UserDao {
     }
 
     public void saveUser(String name, String lastName, byte age) {
-        try {
-            util.connectDatabase();
-        } catch (ClassNotFoundException | SQLException e) {
-            throw new RuntimeException(e);
-        }
-        try (Connection connection = util.getConnection();
+        Util.connectDatabase();
+        try (Connection connection = Util.getConnection();
              PreparedStatement statement = connection.prepareStatement(INSERT_TABLE)) {
             statement.setString(1, name);
             statement.setString(2, lastName);
@@ -69,12 +56,8 @@ public class UserDaoJDBCImpl implements UserDao {
     }
 
     public void removeUserById(long id) {
-        try {
-            util.connectDatabase();
-        } catch (ClassNotFoundException | SQLException e) {
-            throw new RuntimeException(e);
-        }
-        try (Connection connection = util.getConnection();
+        Util.connectDatabase();
+        try (Connection connection = Util.getConnection();
              PreparedStatement statement = connection.prepareStatement(DELETE_USER_ID)) {
             statement.setLong(1, id);
             statement.executeUpdate();
@@ -84,13 +67,9 @@ public class UserDaoJDBCImpl implements UserDao {
     }
 
     public List<User> getAllUsers() {
-        try {
-            util.connectDatabase();
-        } catch (ClassNotFoundException | SQLException e) {
-            throw new RuntimeException(e);
-        }
+        Util.connectDatabase();
         List<User> listUser = new ArrayList<>();
-        try (Connection connection = util.getConnection();
+        try (Connection connection = Util.getConnection();
              PreparedStatement statement = connection.prepareStatement(SELECT_USER)) {
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
@@ -108,12 +87,8 @@ public class UserDaoJDBCImpl implements UserDao {
     }
 
     public void cleanUsersTable() {
-        try {
-            util.connectDatabase();
-        } catch (ClassNotFoundException | SQLException e) {
-            throw new RuntimeException(e);
-        }
-        try (Connection connection = util.getConnection();
+        Util.connectDatabase();
+        try (Connection connection = Util.getConnection();
              Statement statement = connection.createStatement()) {
             statement.executeUpdate(CLEAN_TABLE);
         } catch (SQLException e) {

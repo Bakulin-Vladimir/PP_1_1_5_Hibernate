@@ -9,7 +9,7 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
         // реализуйте алгоритм здесь
-        UserServiceImpl userService = new UserServiceImpl();
+        UserServiceImpl userService = new UserServiceImpl(new UserDaoJDBCImpl());
         userService.createUsersTable();
         userService.saveUser("Петр", "Иванов", (byte) 34);
         userService.saveUser("Мария", "Петрова", (byte) 25);
