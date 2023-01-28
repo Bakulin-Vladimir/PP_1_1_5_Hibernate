@@ -22,8 +22,7 @@ public class UserDaoJDBCImpl implements UserDao {
     }
 
     public void createUsersTable() {
-        Util.connectDatabase();
-        try (Connection connection = Util.getConnection();
+        try (Connection connection = Util.connectDatabase();
              Statement statement = connection.createStatement()) {
             statement.execute(CREATE_TABLE);
         } catch (SQLException e) {
@@ -32,8 +31,7 @@ public class UserDaoJDBCImpl implements UserDao {
     }
 
     public void dropUsersTable() {
-        Util.connectDatabase();
-        try (Connection connection = Util.getConnection();
+        try (Connection connection = Util.connectDatabase();
              Statement statement = connection.createStatement()) {
             statement.execute(DROP_TABLE);
         } catch (SQLException e) {
@@ -42,8 +40,7 @@ public class UserDaoJDBCImpl implements UserDao {
     }
 
     public void saveUser(String name, String lastName, byte age) {
-        Util.connectDatabase();
-        try (Connection connection = Util.getConnection();
+        try (Connection connection = Util.connectDatabase();
              PreparedStatement statement = connection.prepareStatement(INSERT_TABLE)) {
             statement.setString(1, name);
             statement.setString(2, lastName);
@@ -56,8 +53,7 @@ public class UserDaoJDBCImpl implements UserDao {
     }
 
     public void removeUserById(long id) {
-        Util.connectDatabase();
-        try (Connection connection = Util.getConnection();
+        try (Connection connection = Util.connectDatabase();
              PreparedStatement statement = connection.prepareStatement(DELETE_USER_ID)) {
             statement.setLong(1, id);
             statement.executeUpdate();
@@ -67,9 +63,8 @@ public class UserDaoJDBCImpl implements UserDao {
     }
 
     public List<User> getAllUsers() {
-        Util.connectDatabase();
         List<User> listUser = new ArrayList<>();
-        try (Connection connection = Util.getConnection();
+        try (Connection connection = Util.connectDatabase();
              PreparedStatement statement = connection.prepareStatement(SELECT_USER)) {
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
@@ -87,8 +82,7 @@ public class UserDaoJDBCImpl implements UserDao {
     }
 
     public void cleanUsersTable() {
-        Util.connectDatabase();
-        try (Connection connection = Util.getConnection();
+        try (Connection connection = Util.connectDatabase();
              Statement statement = connection.createStatement()) {
             statement.executeUpdate(CLEAN_TABLE);
         } catch (SQLException e) {

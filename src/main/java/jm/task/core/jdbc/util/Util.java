@@ -10,18 +10,13 @@ public class Util {
     private static final String USER = "root";
     private static final String PASSWORD = "root";
 
-    public static void connectDatabase() {
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public static Connection getConnection() {
+    public static Connection connectDatabase() {
         Connection connection;
         try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection(URL, USER, PASSWORD);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

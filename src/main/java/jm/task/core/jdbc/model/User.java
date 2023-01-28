@@ -62,11 +62,6 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", age=" + age +
-                '}';
+        return new String(getId() + " " + getName() + " " + getLastName() + " " + getAge());
     }
 }
