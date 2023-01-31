@@ -31,6 +31,7 @@ public class UserDaoHibernateImpl implements UserDao {
                 transaction.rollback();
             }
             e.printStackTrace();
+            throw e;
         }
     }
 
@@ -46,6 +47,7 @@ public class UserDaoHibernateImpl implements UserDao {
                 transaction.rollback();
             }
             e.printStackTrace();
+            throw e;
         }
     }
 
@@ -62,6 +64,7 @@ public class UserDaoHibernateImpl implements UserDao {
                 transaction.rollback();
             }
             e.printStackTrace();
+            throw e;
         }
     }
 
@@ -78,6 +81,7 @@ public class UserDaoHibernateImpl implements UserDao {
                 transaction.rollback();
             }
             e.printStackTrace();
+            throw e;
         }
     }
 
@@ -94,6 +98,7 @@ public class UserDaoHibernateImpl implements UserDao {
                 transaction.rollback();
             }
             e.printStackTrace();
+            throw e;
         }
         return resultList;
     }
@@ -110,6 +115,7 @@ public class UserDaoHibernateImpl implements UserDao {
                 transaction.rollback();
             }
             e.printStackTrace();
+            throw e;
         }
     }
 }
