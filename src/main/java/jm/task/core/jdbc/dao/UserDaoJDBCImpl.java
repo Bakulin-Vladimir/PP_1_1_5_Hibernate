@@ -8,10 +8,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserDaoJDBCImpl implements UserDao {
+
     private static final String CREATE_TABLE = "create table if not exists User (id INT primary key auto_increment,\n" +
             "name VARCHAR(25) not null,\n" +
             "lastName VARCHAR(25) not null,\n" +
             "age tinyint not null)";
+
     private static final String DROP_TABLE = "drop table if exists User";
     private static final String INSERT_TABLE = "insert into User(name,lastName,age) values(?,?,?)";
     private static final String DELETE_USER_ID = "delete from user where id=?";
