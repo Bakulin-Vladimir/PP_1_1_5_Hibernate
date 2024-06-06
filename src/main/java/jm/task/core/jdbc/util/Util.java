@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 public class Util {
+
     // реализуйте настройку соеденения с БД
     private static final String URL_FOR_JDBC = "jdbc:mysql://localhost:3306/my_db";
     private static final String USER = "root";
@@ -39,6 +40,7 @@ public class Util {
     }
 
     public static Session getSession() {
+
         if (sessionFactory == null) {
             Configuration configuration = new Configuration();
             Properties settings = new Properties();
@@ -55,6 +57,7 @@ public class Util {
                     addAnnotatedClass(User.class).
                     buildSessionFactory();
         }
+
         Session session = sessionFactory.getCurrentSession();
         return session;
     }
